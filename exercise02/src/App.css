@@ -1,3 +1,16 @@
 .App {
   margin: 16px;
 }
+.inputField {
+  border: 1px solid #ddd;
+  padding: 5px;
+  font-size: 14px;
+  width: 250px;
+}
+.inputField:focus {
+  background-color: #fffff5;
+  box-shadow: 0 2px 3px #eee inset;
+}
+.done {
+  text-decoration: line-through;
+}
