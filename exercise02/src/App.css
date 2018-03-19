@@ -1,11 +1,12 @@
 .App {
   margin: 16px;
+  text-align: center;
 }
 .inputField {
   border: 1px solid #ddd;
   padding: 5px;
   font-size: 14px;
-  width: 250px;
+  width: 50%;
 }
 .inputField:focus {
   background-color: #fffff5;
@@ -14,3 +15,4 @@
 .done {
   text-decoration: line-through;
 }
+li { text-align: left; }

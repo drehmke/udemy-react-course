@@ -5,12 +5,15 @@ const ValidationComponent = (props) => {
   const minLen = 5
   const valid = 'Text is valid'
   const short = 'Text too short'
+  let len = null
+  if( props.text != null ) {
+    len = props.text.length
+  }
 
-  console.log(minLen);
 
   return (
     <div className="validationContainer">
-      <p>{ props.len >= minLen ? valid : short }</p>
+      <p>{ len >= minLen ? valid : short }</p>
     </div>
   )
 }
