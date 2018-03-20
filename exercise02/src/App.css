@@ -21,3 +21,15 @@
   text-decoration: line-through;
 }
 li { text-align: left; }
+
+.validationContainer {
+  display: block;
+  border-top: 1px solid #cbcb01;
+  border-bottom: 1px solid #cbcb01;
+  padding: 5px;
+  width: 80%;
+  margin: 10px auto;
+}
+.charContainer {
+  
+}

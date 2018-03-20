@@ -5,10 +5,10 @@ import CharComponent from './Components/Char/Char'
 
 class App extends Component {
   state = {
-    text: null,
-    textLen: `Current characters entered: `,
-    noTextLen: `You haven't entered anything yet. Try typing in the text field above.`,
-    noChar: ` ... waiting ... `
+    text: '',
+    txtCharLen: `Current characters entered: `,
+    txtNoTextLen: `You haven't entered anything yet. Try typing in the text field above.`,
+    txtNoChar: ` ... waiting ... `
   }
 
   changeShowText = (event) => {
@@ -17,11 +17,19 @@ class App extends Component {
     )
   }
 
+  clickDeleteCharHandler = (idx) => {
+    const text = this.state.text
+    const textArr = text.split('')
+    textArr.splice(idx, 1)
+    this.setState({text: textArr.join('')})
+  }
+
   render() {
     let showTextLength = null
     let charList = null
 
     if( this.state.text ) {
+      /* =========================================== */
       const txt = this.state.text
       showTextLength = (
         <p>{this.state.txtCharLen} {txt.length}</p>
@@ -29,8 +37,9 @@ class App extends Component {
       const arr = txt.split('')
       charList = (
         arr.map((e,i) => {
-          return (
+          return(
             <CharComponent
+              click={() => this.clickDeleteCharHandler(i)}
               key={i}
               c={e}
             />
@@ -38,21 +47,20 @@ class App extends Component {
         })
       )
     } else {
-      showTextLength = (
-        <p>{this.state.txtNothing}</p>
-      )
-      charList = (
-        <p>{this.state.txtNoChars}</p>
-      )
+      /* =========================================== */
+      showTextLength = ( <p>{this.state.txtNoTextLen}</p> )
+      charList = ( <p>{this.state.txtNoChar}</p> )
     }
 
     return(
       <div className="App">
         <hr />
-        <input type="text" name="inputText"
+        <input type="text" name="inputText" value={this.state.text}
                 className="inputField" onChange={this.changeShowText} />
-        { showTextLength }
-        <ValidationComponent text={this.state.text} />
+        <div>{ showTextLength }</div>
+        <div className="validationContainer">
+          <ValidationComponent text={this.state.text} />
+        </div>
         <div className="charContainer">
           {charList}
         </div>
@@ -63,7 +71,7 @@ class App extends Component {
           <li className="done">Inside the ValidationComponent, either output "Text too short" or "Text long enough" depending on the text length. (e.g. take 5 as a minimum length)</li>
           <li className="done">Create another component (=> CharComponent) and style it as an inline box (display: inline-block, padding: 16px, text-align: center, margin: 16px, border: 1px solid black)</li>
           <li className="done">Render a list of CharComponents where each component receives a different letter of the entered text (in the initial input field) as a prop</li>
-          <li>When you click a CharComponent, the character it holds should be removed from the entered text</li>
+          <li className="done">When you click a CharComponent, the character it holds should be removed from the entered text</li>
         </ol>
         <p>Hint: Keep in mind that Javascript strings are basically arrays!</p>
       </div>

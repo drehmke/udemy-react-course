@@ -7,7 +7,7 @@ const CharComponent = (props) => {
   else                  { c = props.c }
 
   return (
-    <div className="charElem">
+    <div className="charElem" onClick={props.click}>
       {c}
     </div>
   )
