@@ -13,6 +13,7 @@ class App extends PureComponent {
     this.state = {
       otherState: 'some other value',
       showPersons: false,
+      toggleClicked: 0,
       persons: [
         { id: 1, name: 'Max', age: 28 },
         { id: 2, name: 'Manu', age: 29},
@@ -66,7 +67,12 @@ class App extends PureComponent {
   }
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons
-    this.setState({showPersons: !doesShow})
+    this.setState((prevState, props) => {
+      return {
+        showPersons: !doesShow,
+        toggleClicked: prevState.toggleClicked + 1
+      }
+    })
   }
 
   deletePersonHandler = (personIndex) => {
