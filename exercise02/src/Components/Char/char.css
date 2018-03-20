@@ -4,5 +4,15 @@
   text-align: center;
   margin: 16px;
   border: 1px solid black;
-  height: 50px;
+  cursor: pointer;
+}
+.charElem:hover {
+  background-color: #fefe9a;
+  border-color: #343409;
+}
+.charElem:active {
+  background-color: #343409;
+  border-color: #000000;
+  box-shadow: 0 0 10px #fefe33;
+  color: #ffffff;
 }

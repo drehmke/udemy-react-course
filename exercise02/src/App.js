@@ -22,23 +22,27 @@ class App extends Component {
     let charList = null
 
     if( this.state.text ) {
+      const txt = this.state.text
       showTextLength = (
-        <p>{this.state.textLen} {this.state.text.length}</p>
+        <p>{this.state.txtCharLen} {txt.length}</p>
       )
-      const arr = this.state.text.split('')
+      const arr = txt.split('')
       charList = (
-        <div>
-          {arr.map( (c,i) => {
-            return <CharComponent key={i} c={c} />
-          })}
-        </div>
+        arr.map((e,i) => {
+          return (
+            <CharComponent
+              key={i}
+              c={e}
+            />
+          )
+        })
       )
     } else {
       showTextLength = (
-        <p>{this.state.noTextLen}</p>
+        <p>{this.state.txtNothing}</p>
       )
       charList = (
-        <p>{this.state.noChar}</p>
+        <p>{this.state.txtNoChars}</p>
       )
     }
 
