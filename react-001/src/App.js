@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.css';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -78,14 +78,14 @@ class App extends Component {
 
     const workingStyle = []
     if( this.state.persons.length <= 2) {
-      workingStyle.push('red') // workingStyle = ['red']
+      workingStyle.push( styles.red) // workingStyle = ['red']
     }
     if( this.state.persons.length <= 1) {
-      workingStyle.push('bold') // workingStyle = ['red', 'bold']
+      workingStyle.push( styles.bold ) // workingStyle = ['red', 'bold']
     }
 
     return (
-        <div className="App">
+        <div className={styles.App}>
           <h1>Hi, I'm a React app</h1>
           <p className={workingStyle.join(' ')}>This is really working</p>
           {/*
