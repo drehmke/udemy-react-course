@@ -51,7 +51,8 @@ class App extends Component {
 
   render() {
     const buttonStyle = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px'
@@ -72,12 +73,21 @@ class App extends Component {
           })}
         </div>
       )
+      buttonStyle.backgroundColor = 'red'
+    }
+
+    const workingStyle = []
+    if( this.state.persons.length <= 2) {
+      workingStyle.push('red') // workingStyle = ['red']
+    }
+    if( this.state.persons.length <= 1) {
+      workingStyle.push('bold') // workingStyle = ['red', 'bold']
     }
 
     return (
       <div className="App">
         <h1>Hi, I'm a React app</h1>
-        <p>This is really working</p>
+        <p className={workingStyle.join(' ')}>This is really working</p>
         <button
           style={buttonStyle}
           onClick={() => this.switchNameHandler('Maximilian')}

@@ -1,4 +1,16 @@
-* { outline: 0; }
+* {
+  outline: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
 }
