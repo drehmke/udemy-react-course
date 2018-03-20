@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 import styles from './App.css';
 import Person from './Person/Person'
 
@@ -57,13 +58,15 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map( (person, index) => {
-            return <Person
+            return
+            <ErrorBoundary key={person.id}>
+              <Person
                 name={person.name}
                 age={person.age}
                 click={() => this.deletePersonHandler(index)}
-                key={person.id}
                 changed={(event) => this.nameChangedHandler(event, person.id)}
               />
+            </ErrorBoundary>
           })}
         </div>
       )
@@ -76,6 +79,11 @@ class App extends Component {
     }
     if( this.state.persons.length <= 1) {
       workingStyle.push( styles.bold ) // workingStyle = ['red', 'bold']
+    }
+
+    const rnd = Math.random()
+    if( rnd > 0.7 ) {
+      throw new Error('Something went wrong')
     }
 
     return (
