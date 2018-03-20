@@ -1,3 +1,8 @@
+* {
+  outline: 0;
+  box-sizing: border-box;
+}
+
 .App {
   margin: 16px;
   text-align: center;

@@ -10,7 +10,6 @@ const ValidationComponent = (props) => {
     len = props.text.length
   }
 
-
   return (
     <div className="validationContainer">
       <p>{ len >= minLen ? valid : short }</p>
