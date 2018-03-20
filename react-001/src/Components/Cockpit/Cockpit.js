@@ -1,9 +1,10 @@
 import React from 'react'
+import Aux from '../../Hoc/Aux'
 import styles from './cockpit.css'
 
 const cockpit = (props) => {
   const workingStyle = []
-  let btnClass = ''
+  let btnClass = styles.Button
 
   if( props.personsLen <= 2) {
     workingStyle.push( styles.red) // workingStyle = ['red']
@@ -13,13 +14,14 @@ const cockpit = (props) => {
   }
 
   if(props.showPersons) {
-    btnClass = styles.Red
+    btnClass = [styles.Button, styles.Red].join(" ")
   }
 
   return(
-    <div className={styles.Cockpit}>
+    <Aux>
+    {/*<div className={styles.Cockpit}>*/}
       <h1>{props.appTitle}</h1>
-      <p className={workingStyle.join(' ')}>This is really working</p>
+      <p className={workingStyle}>This is really working</p>
       {/*
       <button
         style={buttonStyle}
@@ -30,7 +32,8 @@ const cockpit = (props) => {
         className={btnClass}
         onClick={props.click}
       >Toggle Person View</button>
-    </div>
+    {/*</div>*/}
+    </Aux>
   )
 }
 
