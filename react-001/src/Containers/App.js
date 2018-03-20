@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import styles from './App.css';
-import WithClass from '../Hoc/WithClass'
+import InvisiWrapper from '../Hoc/InvisiWrapper'
+import componentClass from '../Hoc/componentClass'
 import Persons from '../Components/Persons/Persons'
 import Cockpit from '../Components/Cockpit/Cockpit'
 
@@ -94,7 +95,7 @@ class App extends PureComponent {
     }
     */
     return (
-        <WithClass classes={styles.App}>
+        <InvisiWrapper>
           <button onClick={() => {this.setState({showPersons: true})}}>Show All People</button>
           <Cockpit
             appTitle={this.props.title}
@@ -103,10 +104,10 @@ class App extends PureComponent {
             click={this.togglePersonHandler}
           />
           {persons}
-        </WithClass>
+        </InvisiWrapper>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, "I'm a React App!"))
   }
 }
 
-export default App;
+export default componentClass(App, styles.App);
