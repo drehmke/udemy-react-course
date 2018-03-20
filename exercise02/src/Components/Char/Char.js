@@ -2,10 +2,11 @@ import React from 'react'
 import './char.css'
 
 const CharComponent = (props) => {
+  let c = null
+  if( props.c == " ") { c = '-' }
+  else                { c = props.c }
   return (
-    <div className="charContainer">
-      <div className="charElem"></div>
-    </div>
+    <div className="charElem">{c}</div>
   )
 }
 

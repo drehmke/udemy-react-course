@@ -6,6 +6,9 @@ import CharComponent from './Components/Char/Char'
 class App extends Component {
   state = {
     text: null,
+    txtNothing: `You haven't entered anything yet. Try typing in the text field above.`,
+    txtNoChars: `No characters to track yet.`,
+    txtCharLen: `Current Character Length: `
   }
 
   changeShowText = (event) => {
@@ -16,13 +19,29 @@ class App extends Component {
 
   render() {
     let showTextLength = null
+    let charList = null
     if( this.state.text ) {
+      const txt = this.state.text
       showTextLength = (
-        <p>You've entered {this.state.text.length} characters</p>
+        <p>{this.state.txtCharLen} {txt.length}</p>
+      )
+      const arr = txt.split('')
+      charList = (
+        arr.map((e,i) => {
+          return (
+            <CharComponent
+              key={i}
+              c={e}
+            />
+          )
+        })
       )
     } else {
       showTextLength = (
-        <p>You haven't entered anything yet. Try typing in the text field above.</p>
+        <p>{this.state.txtNothing}</p>
+      )
+      charList = (
+        <p>{this.state.txtNoChars}</p>
       )
     }
 
@@ -33,7 +52,9 @@ class App extends Component {
                 className="inputField" onChange={this.changeShowText} />
         { showTextLength }
         <ValidationComponent text={this.state.text} />
-        <CharComponent />
+        <div className="charContainer">
+          {charList}
+        </div>
         <hr />
         <ol>
           <li className="done">Create an input field (in App Component) with a change listener which outputs the length of the entered text below it. (e.g. in a paragraph)</li>
