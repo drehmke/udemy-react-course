@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './cockpit.css'
 
-const Cockpit = (props) => {
+const cockpit = (props) => {
   const workingStyle = []
   let btnClass = ''
 
@@ -34,4 +34,4 @@ const Cockpit = (props) => {
   )
 }
 
-export default Cockpit
+export default cockpit
