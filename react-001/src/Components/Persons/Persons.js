@@ -2,7 +2,20 @@ import React, { Component } from 'react'
 import Person from './Person/Person'
 
 class Persons extends Component {
+  constructor(props){
+    super(props)
+    console.log('[Persons.js] Inside Constructor', props)
+  }
+
+  componentWillMount() {
+    console.log('[Persons.js] Inside ComponentWillMount()')
+  }
+  componentDidMount() {
+    console.log('[Persons.js] Inside ComponentDidMount()')
+  }
+
   render () {
+    console.log('[Persons.js] Inside Render()')
     return this.props.persons.map( (person, index) => {
         return <Person
             name={person.name}

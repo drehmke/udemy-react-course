@@ -4,6 +4,29 @@ import Persons from '../Components/Persons/Persons'
 import Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    console.log('[App.js] Inside Constructor', props)
+    // Older versions of react - initalize state
+    this.state = {
+      otherState: 'some other value',
+      showPersons: false,
+      persons: [
+        { id: 1, name: 'Max', age: 28 },
+        { id: 2, name: 'Manu', age: 29},
+        { id: 3, name: 'Stephanie', age: 26}
+      ]
+    }
+  }
+
+  componentWillMount() {
+    console.log('[App.js] Inside ComponentWillMount()')
+  }
+  componentDidMount() {
+    console.log('[App.js] Inside ComponentDidMount()')
+  }
+
+/*
   state = {
     otherState: 'some other value',
     showPersons: false,
@@ -13,6 +36,7 @@ class App extends Component {
       { id: 3, name: 'Stephanie', age: 26}
     ]
   }
+*/
 /* obsolete */
   switchNameHandler = (newName) => {
     this.setState({
@@ -51,6 +75,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] Inside Render()')
     let persons = null
 
     if( this.state.showPersons ) {
