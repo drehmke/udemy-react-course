@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './App.css';
-import Person from '../Components/Persons/Person/Person'
+import Persons from '../Components/Persons/Persons'
+import Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
   state = {
@@ -51,33 +52,15 @@ class App extends Component {
 
   render() {
     let persons = null
-    let btnClass = ''
 
     if( this.state.showPersons ) {
-      persons = (
-        <div>
-          {this.state.persons.map( (person, index) => {
-            return
-              <Person
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                click={() => this.deletePersonHandler(index)}
-                changed={(event) => this.nameChangedHandler(event, person.id)}
-              />
-          })}
-        </div>
-      )
-      btnClass= styles.Red
+      persons = <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler}
+          />
     }
 
-    const workingStyle = []
-    if( this.state.persons.length <= 2) {
-      workingStyle.push( styles.red) // workingStyle = ['red']
-    }
-    if( this.state.persons.length <= 1) {
-      workingStyle.push( styles.bold ) // workingStyle = ['red', 'bold']
-    }
     /* fake error
     const rnd = Math.random()
     if( rnd > 0.7 ) {
@@ -86,18 +69,11 @@ class App extends Component {
     */
     return (
         <div className={styles.App}>
-          <h1>Hi, I'm a React app</h1>
-          <p className={workingStyle.join(' ')}>This is really working</p>
-          {/*
-          <button
-            style={buttonStyle}
-            onClick={() => this.switchNameHandler('Maximilian')}
-          >Switch Name</button>
-          */}
-          <button
-            className={btnClass}
-            onClick={this.togglePersonHandler}
-          >Toggle Person View</button>
+          <Cockpit
+            showPersons={this.state.showPersons}
+            personsLen={this.state.persons.length}
+            click={this.togglePersonHandler}
+          />
           {persons}
         </div>
     );
