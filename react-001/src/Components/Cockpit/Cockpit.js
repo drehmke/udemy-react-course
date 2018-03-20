@@ -1,5 +1,5 @@
 import React from 'react'
-import Aux from '../../Hoc/Aux'
+import InvisiWrapper from '../../Hoc/InvisiWrapper'
 import styles from './cockpit.css'
 
 const cockpit = (props) => {
@@ -18,7 +18,7 @@ const cockpit = (props) => {
   }
 
   return(
-    <Aux>
+    <InvisiWrapper>
     {/*<div className={styles.Cockpit}>*/}
       <h1>{props.appTitle}</h1>
       <p className={workingStyle}>This is really working</p>
@@ -33,7 +33,7 @@ const cockpit = (props) => {
         onClick={props.click}
       >Toggle Person View</button>
     {/*</div>*/}
-    </Aux>
+  </InvisiWrapper>
   )
 }
 
