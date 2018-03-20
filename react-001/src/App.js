@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium from 'radium'
 import './App.css';
 import Person from './Person/Person'
 
@@ -55,7 +56,11 @@ class App extends Component {
       color: 'white',
       font: 'inherit',
       border: '1px solid blue',
-      padding: '8px'
+      padding: '8px',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
     let persons = null
@@ -74,6 +79,10 @@ class App extends Component {
         </div>
       )
       buttonStyle.backgroundColor = 'red'
+      buttonStyle[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
 
     const workingStyle = []
@@ -88,10 +97,12 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React app</h1>
         <p className={workingStyle.join(' ')}>This is really working</p>
+        {/*
         <button
           style={buttonStyle}
           onClick={() => this.switchNameHandler('Maximilian')}
         >Switch Name</button>
+        */}
         <button
           style={buttonStyle}
           onClick={this.togglePersonHandler}
@@ -103,4 +114,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
