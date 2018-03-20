@@ -50,15 +50,9 @@ class App extends Component {
   }
 
   render() {
-    const buttonStyle = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px'
-    }
-
     let persons = null
+    let btnClass = ''
+
     if( this.state.showPersons ) {
       persons = (
         <div>
@@ -73,7 +67,7 @@ class App extends Component {
           })}
         </div>
       )
-      buttonStyle.backgroundColor = 'red'
+      btnClass= styles.Red
     }
 
     const workingStyle = []
@@ -95,7 +89,7 @@ class App extends Component {
           >Switch Name</button>
           */}
           <button
-            style={buttonStyle}
+            className={btnClass}
             onClick={this.togglePersonHandler}
           >Toggle Person View</button>
           {persons}
