@@ -1,7 +1,7 @@
 import React from 'react'
 import InvisiWrapper from '../../Hoc/InvisiWrapper'
 
-import styles from './Layout.css'
+import styles from '../Styles/Layout.css'
 
 const layout = (props) => (
   <InvisiWrapper>

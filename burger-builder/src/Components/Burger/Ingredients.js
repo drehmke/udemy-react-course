@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './ingredients.css'
+import styles from '../Styles/Ingredients.css'
 
-class Ingredients extends Components {
+class Ingredients extends Component {
   render () {
     let ingredient = null;
 
@@ -33,6 +33,7 @@ class Ingredients extends Components {
       default:
         ingredient = null
     }
+    return ingredient
   }
 }
 
