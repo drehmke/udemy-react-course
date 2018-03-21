@@ -1,5 +1,6 @@
 import React from 'react'
 import InvisiWrapper from '../../Hoc/InvisiWrapper'
+import Button from '../UI/Button'
 
 const OrderSummary = (props) => {
   const ingredientSummary = Object.keys(props.ingredients)
@@ -20,6 +21,10 @@ const OrderSummary = (props) => {
         {ingredientSummary}
       </ul>
       <p>Continue to Checkout?</p>
+      <div>
+        <Button clicked={props.clickedCancel} btnType='danger'>Cancel</Button>
+        <Button clicked={props.clickedContinue} btnType='success'>Continue</Button>
+      </div>
     </InvisiWrapper>
   )
 }

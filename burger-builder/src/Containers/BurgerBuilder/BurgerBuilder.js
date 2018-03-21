@@ -74,6 +74,13 @@ class BurgerBuilder extends Component {
     this.setState({purchasing: true})
   }
 
+  purchaseCanceledHandler = () => {
+    this.setState({purchasing: false})
+  }
+  purchaseContinuedHandler = () => {
+    alert('You Ordered A Burger!')
+  }
+
   render() {
     const disabledInfo = {
       ...this.state.ingredients
@@ -83,7 +90,16 @@ class BurgerBuilder extends Component {
     }
     return(
       <InvisiWrapper>
-        <Modal show={this.state.purchasing}><OrderSummary ingredients={this.state.ingredients} /></Modal>
+        <Modal
+          show={this.state.purchasing}
+          modalClosed={this.purchaseCanceledHandler}
+        >
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            clickedCancel={this.purchaseCanceledHandler}
+            clickedContinue={this.purchaseContinuedHandler}
+           />
+        </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           ingredientAdded={this.addIngredientHandler}
