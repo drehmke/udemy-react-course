@@ -1,0 +1,8 @@
+.logo {
+  background-color: #ffffff;
+  padding: 8px;
+  height: 50%;
+  border-radius: 10px
+}
+
+.logo img { height: 100%; }

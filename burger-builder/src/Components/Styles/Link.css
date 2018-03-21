@@ -1,0 +1,26 @@
+.link {
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: auto;
+}
+
+.link a {
+  color: #ffffff;
+  text-decoration: none;
+  height: 100%;
+  padding: 16px 10px;
+  border-bottom: 4px solid transparent;
+  box-sizing: border-box;
+  display: block;
+}
+
+.link a:hover,
+.link a:active,
+.link a.active {
+  background-color: #8f5c2c;
+  border-color: #40a4c8;
+  color: #ffffff;
+}
