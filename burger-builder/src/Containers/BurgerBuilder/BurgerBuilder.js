@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import InvisiWrapper from '../../Hoc/InvisiWrapper'
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/Burger/BuildControls'
+import Modal from '../../Components/UI/Modal'
+import OrderSummary from '../../Components/Burger/OrderSummary'
 
 const INGREDIENT_PRICES = {
   lettuce: 0.5,
@@ -19,7 +21,8 @@ class BurgerBuilder extends Component {
       meat: 0
     },
     totalPrice: 4,
-    purchasable: false
+    purchasable: false,
+    purchasing: false
   }
   // methods to mutate the state will be done here
   addIngredientHandler = (type) => {
@@ -67,6 +70,10 @@ class BurgerBuilder extends Component {
     })
   }
 
+  purchaseHandler = () => {
+    this.setState({purchasing: true})
+  }
+
   render() {
     const disabledInfo = {
       ...this.state.ingredients
@@ -76,6 +83,7 @@ class BurgerBuilder extends Component {
     }
     return(
       <InvisiWrapper>
+        <Modal show={this.state.purchasing}><OrderSummary ingredients={this.state.ingredients} /></Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           ingredientAdded={this.addIngredientHandler}
@@ -83,6 +91,7 @@ class BurgerBuilder extends Component {
           disabled={disabledInfo}
           price={this.state.totalPrice}
           purchasable={this.state.purchasable}
+          ordered={this.purchaseHandler}
         />
       </InvisiWrapper>
     )
