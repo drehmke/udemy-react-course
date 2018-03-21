@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import InvisiWrapper from '../../Hoc/InvisiWrapper'
 import Burger from '../../Components/Burger/Burger'
+import BuildControls from '../../Components/Burger/BuildControls'
+
+const INGREDIENT_PRICES = {
+  lettuce: 0.5,
+  cheese: 0.4,
+  meat: 1.3,
+  bacon: 0.7
+}
 
 class BurgerBuilder extends Component {
   state = {
@@ -9,14 +17,58 @@ class BurgerBuilder extends Component {
       bacon: 0,
       cheese: 0,
       meat: 0
+    },
+    totalPrice: 4
+  }
+  // methods to mutate the state will be done here
+  addIngredientHandler = (type) => {
+    const updatedIngredients = { ...this.state.ingredients }
+    const old = this.state.ingredients[type]
+    // add a single item of ingredient type
+    const updated = old + 1;
+    updatedIngredients[type] = updated;
+    const priceAddition = INGREDIENT_PRICES[type]
+    const oldPrice = this.state.totalPrice
+    const newPrice = oldPrice + priceAddition
+    this.setState({
+      totalPrice: newPrice,
+      ingredients: updatedIngredients
+    })
+  }
+
+  removeIngredientHandler = (type) => {
+    const updatedIngredients = { ...this.state.ingredients }
+    const old = this.state.ingredients[type]
+    if( old <= 0 ) {
+      return
     }
+    // add a single item of ingredient type
+    const updated = old - 1;
+    updatedIngredients[type] = updated;
+    const priceReduction = INGREDIENT_PRICES[type]
+    const oldPrice = this.state.totalPrice
+    const newPrice = oldPrice - priceReduction
+    this.setState({
+      totalPrice: newPrice,
+      ingredients: updatedIngredients
+    })
   }
 
   render() {
+    const disabledInfo = {
+      ...this.state.ingredients
+    }
+    for( let key in disabledInfo ) {
+      disabledInfo[key] = disabledInfo[key] <= 0
+    }
     return(
       <InvisiWrapper>
         <Burger ingredients={this.state.ingredients} />
-        <div>Build Controls</div>
+        <BuildControls
+          ingredientAdded={this.addIngredientHandler}
+          ingredientRemoved={this.removeIngredientHandler}
+          disabled={disabledInfo}
+        />
       </InvisiWrapper>
     )
   }
