@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '../Layout/Logo'
+import ImgLogo from '../Layout/Logo'
 import NavItems from '../Navigation/NavItems'
 import styles from '../Styles/Toolbar.css'
 
@@ -7,8 +7,10 @@ const toolbar = (props) => {
   return(
     <header className={styles.toolBar}>
       <div>Menu</div>
-      <Logo />
-      <nav>
+      <div className={styles.logo}>
+        <ImgLogo />
+      </div>
+      <nav className={styles.desktopOnly}>
         <NavItems />
       </nav>
     </header>
