@@ -1,5 +1,6 @@
 .burger {
-  width: 100%;
+  width: 90%;
+  min-width: 275px;
   margin: auto;
   height: 250px;
   overflow: auto;
@@ -24,7 +25,6 @@
 
 @media (min-width: 1000px) and (min-height: 700px ){
   .burger {
-    width: 700px;
-    height: 600px;
+    width: 450px;
   }
 }
