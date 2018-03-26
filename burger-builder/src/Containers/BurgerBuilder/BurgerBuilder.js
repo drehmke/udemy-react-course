@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import InvisiWrapper from '../../Hoc/InvisiWrapper'
+import withErrorHandler from '../../Hoc/withErrorHandler'
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/Burger/BuildControls'
 import Modal from '../../Components/UI/Modal'
 import OrderSummary from '../../Components/Burger/OrderSummary'
 import orderAxios from '../../axios-orders'
 import Spinner from '../../Components/UI/Spinner'
+
 
 const INGREDIENT_PRICES = {
   lettuce: 0.5,
@@ -97,7 +99,7 @@ class BurgerBuilder extends Component {
       },
       deliveryMethod: 'bicycle'
     }
-    /* comment this out to see the spinner
+    /* comment this out to see the spinner */
     orderAxios.post('/orders.json',order)
       .then( (response) => {
         // console.log(response)
@@ -107,8 +109,8 @@ class BurgerBuilder extends Component {
         // console.log(err)
         this.setState({fetching: false, purchasing: false})
       })
-      */
-  }
+    }
+
 
   render() {
     const disabledInfo = {
@@ -150,4 +152,4 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default BurgerBuilder
+export default withErrorHandler(BurgerBuilder, orderAxios)
