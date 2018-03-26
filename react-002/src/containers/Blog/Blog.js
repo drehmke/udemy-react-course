@@ -2,82 +2,40 @@ import React, { Component } from 'react';
 import axios from 'axios'
 //import axios from '../../axios.js'
 
-import Post from '../../components/Post/Post';
-import FullPost from '../../components/FullPost/FullPost';
-import NewPost from '../../components/NewPost/NewPost';
+//
+import Posts from './Posts/Posts'
+//import FullPost from './FullPost/FullPost';
+//import NewPost from './NewPost/NewPost';
 import './Blog.css';
 
 class Blog extends Component {
   state = {
-    posts: [],
     selectedPostId: null,
     error: false
   }
 
-  componentDidMount() {
-    /*
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then( (response) => {
-        // console.log(response)
-        const posts = response.data.slice(0,4)
-        const updatedPosts = posts.map( (post) => {
-          return {
-            ...post,
-            author: 'Donna'
-          }
-        })
-        this.setState({posts: updatedPosts })
-      })
-      */
-      this.getMultiplePosts(4)
-  }
-
-  getMultiplePosts = (qty) => {
-    axios.get('/posts')
-      .then( (response) => {
-        // console.log(response)
-        const posts = response.data.slice(0,qty)
-        const updatedPosts = posts.map( (post) => {
-          return {
-            ...post,
-            author: 'Donna'
-          }
-        })
-        this.setState({posts: updatedPosts})
-      })
-      .catch( (err) => {
-        this.setState({error: true})
-      })
-
-  }
-
-  getSinglePostHandler = (id) => {
-    this.setState({selectedPostId: id})
-  }
 
   render () {
-    let posts = <p style={{textAlign: 'center', color: '#f00'}}>Something went wrong</p>
-    if( !this.state.error ) {
-      posts = this.state.posts.map( (post) => {
-        return <Post
-          key={post.id}
-          title={post.title}
-          author={post.author}
-          clicked={() => this.getSinglePostHandler(post.id)}
-         />
-      })
-    }
       return (
-          <div>
-              <section className="Posts">
-                  {posts}
-              </section>
+          <div className="Blogs">
+            <header>
+              <nav>
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/">Dynamic Post</a></li>
+                  <li><a href="/">New Post</a></li>
+                </ul>
+              </nav>
+            </header>
+              <Posts />
+              {/*
               <section>
                   <FullPost id={this.state.selectedPostId} />
               </section>
               <section>
                   <NewPost />
               </section>
+              */}
           </div>
       );
   }
