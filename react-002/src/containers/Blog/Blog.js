@@ -13,6 +13,7 @@ class Blog extends Component {
   }
 
   componentDidMount() {
+    /*
     axios.get('https://jsonplaceholder.typicode.com/posts')
       .then( (response) => {
         // console.log(response)
@@ -24,6 +25,23 @@ class Blog extends Component {
           }
         })
         this.setState({posts: updatedPosts })
+      })
+      */
+      this.getMultiplePosts(4)
+  }
+
+  getMultiplePosts = (qty) => {
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then( (response) => {
+        // console.log(response)
+        const posts = response.data.slice(0,qty)
+        const updatedPosts = posts.map( (post) => {
+          return {
+            ...post,
+            author: 'Donna'
+          }
+        })
+        this.setState({posts: updatedPosts})
       })
   }
 
