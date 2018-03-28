@@ -6,8 +6,8 @@ import Blog from './containers/Blog/Blog';
 class App extends Component {
   render() {
     return (
-      {/* use this if serving from a subfolder: <BrowserRouter basename="/subfolder"> */}
       <BrowserRouter>
+        {/* use this if serving from a subfolder: <BrowserRouter basename="/subfolder"> */}
         <div className="App">
           <Blog />
         </div>
