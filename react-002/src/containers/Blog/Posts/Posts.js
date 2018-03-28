@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from '../../../axios'
 import Post from '../../../components/Post/Post'
+import FullPost from '../FullPost/FullPost';
+//import { withRouter } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 import styles from './Posts.css'
 
 class Posts extends Component {
@@ -9,7 +12,7 @@ class Posts extends Component {
   }
   /* --- LifeCycle ---------------------- */
   componentDidMount() {
-      this.getMultiplePosts(12)
+    this.getMultiplePosts(6)
   }
 
   /* ---- Mutators --------------------- */
@@ -35,7 +38,8 @@ class Posts extends Component {
 
   /* ---- Handlers ------------------- */
   getSinglePostHandler = (id) => {
-    this.setState({selectedPostId: id})
+    //this.setState({selectedPostId: id})
+    this.props.history.push(this.props.match.url + '/' + id)
   }
 
   /* ---- Render --------------------- */
@@ -43,21 +47,29 @@ class Posts extends Component {
     let posts = <p style={{textAlign: 'center', color: '#f00'}}>Something went wrong</p>
     if( !this.state.error ) {
       posts = this.state.posts.map( (post) => {
-        return <Post
-          key={post.id}
-          title={post.title}
-          author={post.author}
-          clicked={() => this.getSinglePostHandler(post.id)}
-         />
+        return (
+//          <NavLink to={'/post/' + post.id} key={post.id}>
+            <Post
+            key={post.id}
+            title={post.title}
+            author={post.author}
+            clicked={() => this.getSinglePostHandler(post.id)}
+           />
+//          </NavLink>
+        )
       })
     }
 
     return (
-      <section className="Posts">
-          {posts}
-      </section>
+      <div>
+        <section className="Posts">
+            {posts}
+        </section>
+        <Route path={this.props.match.url + '/:id'} exact component={FullPost} />
+      </div>
     )
   }
 }
 
+//export default withRouter(Posts)
 export default Posts
