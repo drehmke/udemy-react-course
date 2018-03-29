@@ -7,7 +7,7 @@ import Navbar from '../../components/navbar'
 // Route components
 import Courses from '../Courses/Courses'
 import Students from '../Users/Users'
-
+import NotFound from '../ErrorPages/NotFound'
 
 class Layout extends Component {
   render() {
@@ -19,6 +19,7 @@ class Layout extends Component {
         <Switch>
           <Route path="/students" exact component={Students} />
           <Route path="/courses" component={Courses} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     )
