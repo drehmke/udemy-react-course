@@ -33,7 +33,7 @@ class Courses extends Component {
                     }
                 </section>
 
-
+                <Route path={this.props.match.url + '/course/:id'} component={Course} />
             </div>
         );
     }
