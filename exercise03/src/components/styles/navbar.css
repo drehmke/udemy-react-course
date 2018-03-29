@@ -23,5 +23,6 @@ nav a:hover {
 nav a:active,
 nav a.active {
   color: red;
-  border-color: red;
+  border-bottom: none;
+  border-top: 1px dotted red;
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
+// Router Imports
+import Course from '../Course/Course'
 
 import './Courses.css';
 
@@ -20,16 +22,21 @@ class Courses extends Component {
                     {
                         this.state.courses.map( course => {
                             return(
-                              <NavLink to="/course" replace title={course.title} id={course.id} key={course.id} className="">
+                              <NavLink to={{
+                                pathname: this.props.match.url + '/course/' + course.id,
+                                search: '?title=' + course.title
+                              }} replace title={course.title} id={course.id} key={course.id} className="">
                                 <article className="Course" key={course.id}>{course.title}</article>
                               </NavLink>
                             )
                         } )
                     }
                 </section>
+
+
             </div>
         );
     }
 }
 
-export default Courses;
+export default Courses

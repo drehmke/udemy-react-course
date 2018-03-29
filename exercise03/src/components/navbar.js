@@ -7,8 +7,8 @@ const navbar = (props) => {
     <div>
       <nav>
         <ul>
-          <li><NavLink to="/Courses" replace title="Course list" id="Courses" className="">Course List</NavLink></li>
-          <li><NavLink to="/Students" replace title="Students list" id="students" className="">Students List</NavLink></li>
+          <li><NavLink to="/courses" replace title="Course list" id="Courses" className="">Course List</NavLink></li>
+          <li><NavLink to="/students" replace title="Students list" id="students" className="">Students List</NavLink></li>
         </ul>
       </nav>
     </div>
