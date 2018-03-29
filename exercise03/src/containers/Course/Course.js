@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 class Course extends Component {
   state = {
@@ -31,7 +31,7 @@ class Course extends Component {
             <hr />
               <h1>{this.state.title}</h1>
               <p>You selected the Course with ID: {this.props.match.params.id}</p>
-              {/* <NavLink to="/all-courses">View All Courses</NavLink> */}
+              <NavLink to="/all-courses">View All Courses</NavLink>
           </div>
         )
     }

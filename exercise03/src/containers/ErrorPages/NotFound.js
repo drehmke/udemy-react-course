@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import { withRouter, NavLink } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class NotFound extends Component {
-  componentDidMount() {
-    console.log(this.props.history)
-  }
-
   goBackHandler = () => {
     this.props.history.goBack()
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 // Static components
 import Navbar from '../../components/navbar'
@@ -19,6 +19,7 @@ class Layout extends Component {
         <Switch>
           <Route path="/students" exact component={Students} />
           <Route path="/courses" component={Courses} />
+          <Redirect from="/all-courses" to="/courses" />
           <Route component={NotFound} />
         </Switch>
       </div>
