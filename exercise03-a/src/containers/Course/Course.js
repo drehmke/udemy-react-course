@@ -5,12 +5,13 @@ class Course extends Component {
   state = {
     title: null
   }
-  componentDidMount() {
+  componentDidUpdate() {
     const query = this.props.location.search.split("=")
     const title = query[1].replace(/%20/g, " ")
-    this.setState({
-      title: title
-    })
+    if( this.state.title == null || this.state.title !== title )
+    {
+      this.setState({ title:  title})
+    }
   }
     render () {
         return (

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 import './Courses.css';
+
+import Course from '../../containers/Course/Course'
 
 class Courses extends Component {
     state = {
@@ -21,7 +23,7 @@ class Courses extends Component {
                             return(
                               <NavLink
                                 to={{
-                                  pathname: '/course/' + course.id,
+                                  pathname: '/courses/course/' + course.id,
                                   search: '?title=' + course.title
                                 }}
                                 replace title={course.title}
@@ -35,6 +37,7 @@ class Courses extends Component {
                         } )
                     }
                 </section>
+                <Route path="/courses/course/:id" component={Course} exact strict sensitive />
             </div>
         );
     }
