@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom'
 import Layout from './Components/Layout/Layout'
 import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder'
+import Checkout from './Containers/Checkout/Checkout'
 
 class App extends Component {
   state = {
@@ -18,7 +20,12 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          {this.state.show ? <BurgerBuilder /> : null}
+          <Switch>
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/" component={BurgerBuilder} exact />
+          </Switch>
+
+
         </Layout>
       </div>
     );

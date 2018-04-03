@@ -90,7 +90,10 @@ class BurgerBuilder extends Component {
     this.setState({purchasing: false})
   }
   purchaseContinuedHandler = () => {
+    /* pre-firebase */
     //alert('You Ordered A Burger!')
+    /* pre-routing */
+    /*
     this.setState({fetching: true})
     const order = {
       ingredients: this.state.ingredients,
@@ -106,7 +109,8 @@ class BurgerBuilder extends Component {
       },
       deliveryMethod: 'bicycle'
     }
-    /* comment this out to see the spinner */
+    /* comment this out to see the spinner, if using firebase */
+    /*
     orderAxios.post('/orders.json',order)
       .then( (response) => {
         // console.log(response)
@@ -115,6 +119,17 @@ class BurgerBuilder extends Component {
       .catch( (err) => {
         // console.log(err)
         this.setState({fetching: false, purchasing: false})
+      })
+      */
+      const queryParams = []
+      queryParams.push('price=' + this.state.totalPrice)
+      for( let i in this.state.ingredients ) {
+        queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
+      }
+
+      this.props.history.push({
+        pathname: '/checkout',
+        search: '?' + queryParams.join('&')
       })
     }
 
