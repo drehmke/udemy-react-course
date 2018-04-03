@@ -13,7 +13,7 @@ class Navbar extends Component {
 
   render() {
     const navlinks = this.state.links.map( (link) => {
-      return <NavLink to={link.url} replace title={link.text} id={link.id} className="">{link.text}</NavLink>
+      return <NavLink to={link.url} replace title={link.text} id={link.id} activeClassName="active" className="">{link.text}</NavLink>
     })
     return(
       <nav>

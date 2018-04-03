@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { NavLink } from 'react-router-dom'
 import './Courses.css';
 
 class Courses extends Component {
@@ -18,7 +18,11 @@ class Courses extends Component {
                 <section className="Courses">
                     {
                         this.state.courses.map( course => {
-                            return <article className="Course" key={course.id}>{course.title}</article>;
+                            return(
+                              <NavLink to={'/course/' + course.id} replace title={course.title} id={course.id} activeClassName="active" className="">
+                                <article className="Course" key={course.id}>{course.title}</article>
+                              </NavLink>
+                            )
                         } )
                     }
                 </section>

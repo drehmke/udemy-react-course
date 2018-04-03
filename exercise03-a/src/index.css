@@ -9,8 +9,17 @@ body {
   box-sizing: border-box;
 }
 
+.instructions {
+  border-top: 1px solid antiquewhite;
+  border-bottom: 1px solid antiquewhite;
+  background-color: ghostwhite;
+  margin: 10px 0;
+  padding: 10px 0;
+  text-align: left;
+}
 .done {
   text-decoration: line-through;
+  color: gray;
 }
 
 nav {
@@ -18,13 +27,24 @@ nav {
   flex-flow: row;
   justify-content: space-around;
   align-items: center;
-  padding: 10px 0;
+  height: 50px;
   background-color: antiquewhite;
 }
 nav a {
   display: block;
   text-decoration: none;
   color: blue;
-  padding: 10px;
-  border-bottom: 1px solid blue;
+  padding: 8px;
+}
+nav a:hover {
+  color: black;
+  border-bottom: none;
+  border-top: 1px dashed black;
+}
+nav a:active,
+nav a.active {
+  color: purple;
+  border: 1px dashed purple;
+  border-top: none;
+  border-bottom: none;
 }
