@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Navbar from './components/nav'
 import Courses from './containers/Courses/Courses';
@@ -13,6 +13,7 @@ class App extends Component {
         <div>
           <Navbar />
             <Switch>
+              <Redirect from="/all-courses" to="/courses" push exact strict />
               <Route path="/courses" component={Courses} strict sensitive />
               <Route path="/students" component={Users} exact strict sensitive />
               <Route component={Error404} />
@@ -28,7 +29,7 @@ class App extends Component {
               <li className="done">Pass the course title to the "Course" page - pass it as a param or score bonus points by passing it as query params (you need to manually parse them though!)</li>
               <li className="done">Load the "Course" component as a nested component of "Courses"</li>
               <li className="done">Add a 404 error page and render it for any unknown routes</li>
-              <li>Redirect requests to /all-courses to /courses (=> Your "Courses" page)</li>
+              <li className="done">Redirect requests to /all-courses to /courses (=> Your "Courses" page)</li>
             </ol>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 
 class Course extends Component {
   state = {
@@ -18,6 +18,7 @@ class Course extends Component {
             <div>
                 <h1>{this.state.title}</h1>
                 <p>You selected the Course with ID: {this.props.match.params.id} </p>
+                <p><NavLink to="/all-courses">View All Courses</NavLink></p>
             </div>
         );
     }
