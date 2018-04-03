@@ -48,3 +48,8 @@ nav a.active {
   border-top: none;
   border-bottom: none;
 }
+
+.fakeLink {
+  cursor: pointer;
+  color: red;
+}
