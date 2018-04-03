@@ -20,7 +20,10 @@ class Courses extends Component {
                         this.state.courses.map( course => {
                             return(
                               <NavLink
-                                to={'/course/' + course.id}
+                                to={{
+                                  pathname: '/course/' + course.id,
+                                  search: '?title=' + course.title
+                                }}
                                 replace title={course.title}
                                 key={course.id}
                                 id={course.id}
