@@ -12,3 +12,19 @@ body {
 .done {
   text-decoration: line-through;
 }
+
+nav {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  background-color: antiquewhite;
+}
+nav a {
+  display: block;
+  text-decoration: none;
+  color: blue;
+  padding: 10px;
+  border-bottom: 1px solid blue;
+}
