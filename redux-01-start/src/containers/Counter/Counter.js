@@ -5,9 +5,6 @@ import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
 class Counter extends Component {
-    state = {
-        counter: 0
-    }
 
     counterChangedHandler = ( action, value ) => {
         switch ( action ) {
@@ -39,6 +36,16 @@ class Counter extends Component {
                 <CounterControl label="Decrement" clicked={() => this.counterChangedHandler('dec')}  />
                 <CounterControl label="Add 10" clicked={() => this.counterChangedHandler('add', 10)}  />
                 <CounterControl label="Subtract 5" clicked={() => this.counterChangedHandler( 'sub', 5 )}  />
+                <hr />
+                <button onClick={this.props.onStoreCounter}>Store Result</button>
+                <ul>
+                  {this.props.storedResults.map( res => (
+                    <li key={res.id}
+                      onClick={() => this.props.onRemoveStoredResult(res.id)}
+                      >{res.value}</li>
+                  ))}
+
+                </ul>
             </div>
         );
     }
@@ -46,7 +53,8 @@ class Counter extends Component {
 
 const mapStateToProps = state => {
   return {
-    ctr: state.counter
+    ctr: state.counter,
+    storedResults: state.results
   }
 }
 const mapDispatchToProps = dispatch => {
@@ -54,7 +62,9 @@ const mapDispatchToProps = dispatch => {
     onIncrementCounter: () => dispatch({type: 'INCREMENT'}),
     onDecrementCounter: () => dispatch({type: 'DECREMENT'}),
     onAddCounter: (val) => dispatch({type: 'ADD', value: val}),
-    onSubtractCounter: (val) => dispatch({type: 'SUBTRACT', value: val})
+    onSubtractCounter: (val) => dispatch({type: 'SUBTRACT', value: val}),
+    onStoreCounter: () => dispatch({type: 'STORE'}),
+    onRemoveStoredResult: (val) => dispatch({ type: 'REMRESULT', value: val})
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
