@@ -95,7 +95,7 @@ class ContactData extends Component {
           ]
         },
         valid: true, // this is needed for the formIsValid check
-        validation: {
+        validation: { // this is needed for validationCheck method
           required: false
         }
       }
@@ -131,6 +131,9 @@ class ContactData extends Component {
   }
 
   validationCheck( value, rules ) {
+    if( !rules ) {
+      return true
+    }
     let isValid = true
     // rule checks
     if( rules.required )  { isValid = value.trim() !== '' && isValid }
