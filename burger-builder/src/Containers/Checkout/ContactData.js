@@ -3,16 +3,65 @@ import orderAxios from '../../axios-orders'
 //import {} from 'react-router-dom'
 import Button from '../../Components/UI/Button'
 import Spinner from '../../Components/UI/Spinner'
+import Input from '../../Components/UI/Form/Input'
 import styles from '../../Components/Styles/ContactData.css'
 
 class ContactData extends Component {
   state = {
-    name: '',
-    email: '',
-    address: {
-      street: '',
-      city: '',
-      postalCode: ''
+    orderForm: {
+      name: {
+        elementType: 'input',
+        value: '',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Your Name'
+        }
+      },
+      street: {
+        elementType: 'input',
+        value: '',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Your Street Address'
+        }
+      },
+      zipcode: {
+        elementType: 'input',
+        value: '',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Your Zip Code'
+        }
+      },
+      country: {
+        elementType: 'input',
+        value: '',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Your Country'
+        }
+      },
+      email: {
+        elementType: 'input',
+        value: '',
+        elementConfig: {
+          type: 'email',
+          placeholder: 'Your Email Address'
+        }
+      },
+      deliveryMethod: {
+        elementType: 'select',
+        value: '',
+        elementConfig: {
+          options: [
+            {value: 'bicycle', display: 'Bicycle'},
+            {value: 'car', display: 'Car'},
+            {value: 'tank', display: 'Tank'},
+            {value: 'drone', display: 'Drone'},
+            {value: 'hovercraft', display: 'Hovercraft'},
+          ]
+        }
+      }
     },
     fetching: false
   }
@@ -21,20 +70,7 @@ class ContactData extends Component {
     event.preventDefault()
 
     this.setState({fetching: true})
-    const order = {
-      ingredients: this.props.ingredients,
-      price: this.props.price,
-      customer: {
-        name: "Donna Ryan",
-        address: {
-          street: "123 AnyStreet",
-          zipCode: '12345',
-          country: 'USA'
-        },
-        email: 'test@test.com'
-      },
-      deliveryMethod: 'bicycle'
-    }
+    let order = ''
     /* comment this out to see the spinner, if using firebase */
     orderAxios.post('/orders.json',order)
       .then( (response) => {
@@ -49,13 +85,24 @@ class ContactData extends Component {
   }
 
   render() {
+    const formElements = []
+    for( let key in this.state.orderForm ) {
+      formElements.push({
+        id: key,
+        config: this.state.orderForm[key]
+      })
+    }
     let form = (
       <form>
-        <input type="text" name="name" placeholder="Your Name" />
-        <input type="email" name="email" placeholder="Your Email Address" />
-        <input type="text" name="street" placeholder="Your Street Address" />
-        <input type="text" name="city" placeholder="Your City" />
-        <input type="text" name="postalCode" placeholder="Your Zip Code" />
+        {
+          formElements.map( formElement => (
+            <Input key={formElement.id}
+              elementType={formElement.config.elementType}
+              elementConfig={formElement.config.elementConfig}
+              value={formElement.config.value}
+            />
+          ))
+        }
         <div className="actions">
           <Button btnType="success" clicked={this.orderHandler}>Complete Order</Button>
         </div>

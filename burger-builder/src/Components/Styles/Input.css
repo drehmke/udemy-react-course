@@ -1,0 +1,31 @@
+.formInput {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.formInput label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.formInput input,
+.formInput select,
+.formInput textarea {
+  border: 1px solid #ccc;
+  background-color: white;
+  font: inherit;
+  padding: 6px 10px;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  border: 0;
+  border-bottom: 2px solid #703b09;
+}
+
+.formInput input:focus,
+.formInput select:focus,
+.formInput textarea:focus {
+  background-color: #ccc;
+  border-color: #40a4c8;
+}
