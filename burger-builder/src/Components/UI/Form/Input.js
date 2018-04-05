@@ -3,17 +3,31 @@ import styles from '../../Styles/Input.css'
 
 const input = (props) => {
   let inputElement = null
+  let errorMessage = null
+
+  const inputClasses = []
+  if( props.invalid
+    && props.shouldValidate
+    && props.touched === true ) {
+    inputClasses.push(styles.invalid)
+    errorMessage = <div className={styles.errorMessage}>{props.shouldValidate.errorMessage}</div>
+  }
+
   switch( props.elementType) {
     case ('textarea'):
       inputElement = <textarea
+        className={inputClasses.join(" ")}
         value={props.value}
-          {...props.elementConfig}
+        {...props.elementConfig}
+        onChange={props.changed}
       />
       break;
     case ('select'):
       inputElement = (
-        <select>
-          value={props.value}
+        <select
+          onChange={props.changed}
+          className={inputClasses.join(" ")}
+          >
           console.log(props.elementConfig.options)
           {props.elementConfig.options.map( (option, index) => (
             <option key={index} value={option.value}>{option.display}</option>
@@ -24,6 +38,8 @@ const input = (props) => {
     case ('input'):
     default:
       inputElement = <input
+        className={inputClasses.join(" ")}
+        onChange={props.changed}
         value={props.value}
         {...props.elementConfig}
       />
@@ -33,6 +49,7 @@ const input = (props) => {
     <div className={styles.formInput}>
       <label>{props.label}</label>
       {inputElement}
+      {errorMessage}
     </div>
   )
 }

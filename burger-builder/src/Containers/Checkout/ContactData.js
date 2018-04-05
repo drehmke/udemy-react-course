@@ -15,7 +15,14 @@ class ContactData extends Component {
         elementConfig: {
           type: 'text',
           placeholder: 'Your Name'
-        }
+        },
+        validation: {
+          required: true,
+          minLength: 3,
+          errorMessage: 'Please enter a valid name.'
+        },
+        valid: false,
+        touched: false
       },
       street: {
         elementType: 'input',
@@ -23,7 +30,13 @@ class ContactData extends Component {
         elementConfig: {
           type: 'text',
           placeholder: 'Your Street Address'
-        }
+        },
+        validation: {
+          required: true,
+          errorMessage: 'Please enter a valid street address.'
+        },
+        valid: false,
+        touched: false
       },
       zipcode: {
         elementType: 'input',
@@ -31,7 +44,15 @@ class ContactData extends Component {
         elementConfig: {
           type: 'text',
           placeholder: 'Your Zip Code'
-        }
+        },
+        validation: {
+          required: true,
+          minLength: 5,
+          maxLength: 5,
+          errorMessage: 'The zip code must be 5 characters long.'
+        },
+        valid: false,
+        touched: false
       },
       country: {
         elementType: 'input',
@@ -39,7 +60,13 @@ class ContactData extends Component {
         elementConfig: {
           type: 'text',
           placeholder: 'Your Country'
-        }
+        },
+        validation: {
+          required: true,
+          errorMessage: 'Please enter a valid country.'
+        },
+        valid: false,
+        touched: false
       },
       email: {
         elementType: 'input',
@@ -47,11 +74,17 @@ class ContactData extends Component {
         elementConfig: {
           type: 'email',
           placeholder: 'Your Email Address'
-        }
+        },
+        validation: {
+          required: true,
+          errorMessage: 'Please enter a valid email address.'
+        },
+        valid: false,
+        touched: false
       },
       deliveryMethod: {
         elementType: 'select',
-        value: '',
+        value: 'bicycle',
         elementConfig: {
           options: [
             {value: 'bicycle', display: 'Bicycle'},
@@ -60,9 +93,14 @@ class ContactData extends Component {
             {value: 'drone', display: 'Drone'},
             {value: 'hovercraft', display: 'Hovercraft'},
           ]
+        },
+        valid: true, // this is needed for the formIsValid check
+        validation: {
+          required: false
         }
       }
     },
+    formIsValid: false,
     fetching: false
   }
 
@@ -70,7 +108,15 @@ class ContactData extends Component {
     event.preventDefault()
 
     this.setState({fetching: true})
-    let order = ''
+    const formData = {}
+    for ( let formElementId in this.state.orderForm ) {
+      formData[formElementId] = this.state.orderForm[formElementId].value
+    }
+    const order = {
+      ingredients: this.props.ingredients,
+      price: this.props.price,
+      orderData: formData
+    }
     /* comment this out to see the spinner, if using firebase */
     orderAxios.post('/orders.json',order)
       .then( (response) => {
@@ -84,6 +130,34 @@ class ContactData extends Component {
       })
   }
 
+  validationCheck( value, rules ) {
+    let isValid = true
+    // rule checks
+    if( rules.required )  { isValid = value.trim() !== '' && isValid }
+    if( rules.minLength ) { isValid = value.length >= rules.minLength && isValid }
+    if( rules.maxLength ) { isValid = value.length <= rules.maxLength && isValid }
+    // rule checks are done
+    return isValid
+  }
+
+  inputChangedHandler = (event, inputId) => {
+    const updatedOrderForm = {  ...this.state.orderForm }
+    const updatedFormElement = { ...updatedOrderForm[inputId] }
+    updatedFormElement.value = event.target.value
+    updatedFormElement.valid = this.validationCheck(updatedFormElement.value, updatedFormElement.validation)
+    updatedFormElement.touched = true;
+    updatedOrderForm[inputId] = updatedFormElement
+
+    // check to see if the whole form is valid
+    let formIsValid = true
+    for( let inputId in updatedOrderForm ) {
+      // if the element is true AND formIsValid true
+      formIsValid = updatedOrderForm[inputId].valid && formIsValid
+    }
+
+    this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid})
+  }
+
   render() {
     const formElements = []
     for( let key in this.state.orderForm ) {
@@ -93,18 +167,22 @@ class ContactData extends Component {
       })
     }
     let form = (
-      <form>
+      <form onSubmit={this.orderHandler}>
         {
           formElements.map( formElement => (
             <Input key={formElement.id}
               elementType={formElement.config.elementType}
               elementConfig={formElement.config.elementConfig}
               value={formElement.config.value}
+              invalid={!formElement.config.valid}
+              shouldValidate={formElement.config.validation}
+              touched={formElement.config.touched}
+              changed={(event) => this.inputChangedHandler(event, formElement.id)}
             />
           ))
         }
         <div className="actions">
-          <Button btnType="success" clicked={this.orderHandler}>Complete Order</Button>
+          <Button btnType="success" disabled={!this.state.formIsValid}>Complete Order</Button>
         </div>
       </form>
     )

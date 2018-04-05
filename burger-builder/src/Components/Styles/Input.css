@@ -26,6 +26,19 @@
 .formInput input:focus,
 .formInput select:focus,
 .formInput textarea:focus {
-  background-color: #ccc;
+  background-color: #fbfce9;
   border-color: #40a4c8;
+}
+
+.formInput .invalid,
+.formInput .invalid:focus {
+  border-color: #b16264;
+  background-color: #fcf0f1;
+}
+
+.errorMessage {
+  text-align: left;
+  font-size: .75rem;
+  color: #b16264;
+  width: 100%;
 }
