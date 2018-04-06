@@ -1,8 +1,7 @@
-import * as actionTypes from './actions'
+import * as actionTypes from './../actions'
 
 const initialState = {
-  counter: 0,
-  results: []
+  counter: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -27,27 +26,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         counter: state.counter - action.value
-      }
-    case actionTypes.STORE:
-      return {
-        ...state,
-        // use concat instead of push so that we do not
-        // mutably update the results array
-        results: state.results.concat({id: new Date(), value: state.counter})
-      }
-    case actionTypes.REMRESULT:
-      /* one way to update this ...
-      const id = 2;
-      const newResults = [...state.results]
-      newResults.splice(id, 1)
-      */
-      /* filter makes a new array, so maintains mutabillity */
-      const updatedArray = state.results.filter(
-        result => result.id !== action.value
-      )
-      return {
-        ...state,
-        results: updatedArray
       }
     default:
       //console.error(`Unable to execute `, action.type )

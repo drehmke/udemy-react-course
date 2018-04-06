@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-
+import * as actionTypes from '../../store/actions'
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
@@ -37,7 +37,8 @@ class Counter extends Component {
                 <CounterControl label="Add 10" clicked={() => this.counterChangedHandler('add', 10)}  />
                 <CounterControl label="Subtract 5" clicked={() => this.counterChangedHandler( 'sub', 5 )}  />
                 <hr />
-                <button onClick={this.props.onStoreCounter}>Store Result</button>
+                {/* pass the reducer slice for counter so reducer slice result can use it */}
+                <button onClick={() => this.props.onStoreCounter(this.props.ctr)}>Store Result</button>
                 <ul>
                   {this.props.storedResults.map( res => (
                     <li key={res.id}
@@ -53,18 +54,18 @@ class Counter extends Component {
 
 const mapStateToProps = state => {
   return {
-    ctr: state.counter,
-    storedResults: state.results
+    ctr: state.ctr.counter,
+    storedResults: state.res.results
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onIncrementCounter: () => dispatch({type: 'INCREMENT'}),
-    onDecrementCounter: () => dispatch({type: 'DECREMENT'}),
-    onAddCounter: (val) => dispatch({type: 'ADD', value: val}),
-    onSubtractCounter: (val) => dispatch({type: 'SUBTRACT', value: val}),
-    onStoreCounter: () => dispatch({type: 'STORE'}),
-    onRemoveStoredResult: (val) => dispatch({ type: 'REMRESULT', value: val})
+    onIncrementCounter: () => dispatch({type: actionTypes.INCREMENT}),
+    onDecrementCounter: () => dispatch({type: actionTypes.DECREMENT}),
+    onAddCounter: (val) => dispatch({type: actionTypes.ADD, value: val}),
+    onSubtractCounter: (val) => dispatch({type: actionTypes.SUBTRACT, value: val}),
+    onStoreCounter: (res) => dispatch({type: actionTypes.STORE, result: res}),
+    onRemoveStoredResult: (val) => dispatch({ type: actionTypes.REMRESULT, value: val})
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);

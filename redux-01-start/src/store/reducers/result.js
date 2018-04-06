@@ -1,39 +1,17 @@
-import * as actionTypes from './actions'
+import * as actionTypes from './../actions'
 
 const initialState = {
-  counter: 0,
   results: []
 }
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case actionTypes.INCREMENT:
-      // this is one way to copy the object
-      const newState = Object.assign( {}, state)
-      newState.counter = state.counter + 1
-      return newState
-      // no need for break because we are using return
-    case actionTypes.DECREMENT:
-      return {
-        ...state,
-        counter: state.counter - 1
-      }
-    case actionTypes.ADD:
-      return {
-        ...state,
-        counter: state.counter + action.value
-      }
-    case actionTypes.SUBTRACT:
-      return {
-        ...state,
-        counter: state.counter - action.value
-      }
     case actionTypes.STORE:
       return {
         ...state,
         // use concat instead of push so that we do not
         // mutably update the results array
-        results: state.results.concat({id: new Date(), value: state.counter})
+        results: state.results.concat({id: new Date(), value: action.result})
       }
     case actionTypes.REMRESULT:
       /* one way to update this ...
