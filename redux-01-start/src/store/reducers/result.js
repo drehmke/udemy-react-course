@@ -1,4 +1,4 @@
-import * as actionTypes from './../actions'
+import * as actionTypes from '../actions/actions'
 
 const initialState = {
   results: []
@@ -11,7 +11,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         // use concat instead of push so that we do not
         // mutably update the results array
-        results: state.results.concat({id: new Date(), value: action.result})
+        results: state.results.concat({id: new Date(), value: action.value})
       }
     case actionTypes.REMRESULT:
       /* one way to update this ...
