@@ -4,7 +4,7 @@ const initialState = {
   ingredients: {
     lettuce: 0,
     cheese: 0,
-    meat: 1,
+    meat: 0,
     bacon: 0
   },
   totalPrice: 4
