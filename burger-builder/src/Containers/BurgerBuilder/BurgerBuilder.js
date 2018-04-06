@@ -27,6 +27,7 @@ class BurgerBuilder extends Component {
   }
 
   componentDidMount() {
+    /*
     orderAxios.get('https://react-burger-builder-21383.firebaseio.com/ingredients.json')
       .then(response => {
         this.setState({ingredients: response.data})
@@ -34,6 +35,7 @@ class BurgerBuilder extends Component {
       .catch( (error) => {
         this.setState({error: true})
       } )
+      */
   }
 
   // methods to mutate the state will be done here
