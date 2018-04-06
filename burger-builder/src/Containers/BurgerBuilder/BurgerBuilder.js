@@ -10,18 +10,19 @@ import OrderSummary from '../../Components/Burger/OrderSummary'
 import orderAxios from '../../axios-orders'
 import Spinner from '../../Components/UI/Spinner'
 
-
+/*
 const INGREDIENT_PRICES = {
   lettuce: 0.5,
   cheese: 0.4,
   meat: 1.3,
   bacon: 0.7
 }
+*/
 
 class BurgerBuilder extends Component {
   state = {
     //ingredients: null,
-    totalPrice: 4,
+    //totalPrice: 4,
     purchasable: false,
     purchasing: false,
     fetching: false,
@@ -39,7 +40,7 @@ class BurgerBuilder extends Component {
       } )
       */
   }
-
+/*
   // methods to mutate the state will be done here
   addIngredientHandler = (type) => {
     const updatedIngredients = { ...this.state.ingredients }
@@ -75,7 +76,7 @@ class BurgerBuilder extends Component {
     })
     this.updatePurchaseable(updatedIngredients)
   }
-
+*/
   updatePurchaseable(ingredients) {
     //const ingredients = { ...this.state.ingredients }
     const sum = Object.keys(ingredients)
@@ -156,7 +157,7 @@ class BurgerBuilder extends Component {
             ingredientAdded={this.props.onIngredientAdded}
             ingredientRemoved={this.props.onIngredientRemoved}
             disabled={disabledInfo}
-            price={this.state.totalPrice}
+            price={this.props.price}
             purchasable={this.state.purchasable}
             ordered={this.purchaseHandler}
           />
@@ -166,7 +167,7 @@ class BurgerBuilder extends Component {
         ingredients={this.props.ings}
         clickedCancel={this.purchaseCanceledHandler}
         clickedContinue={this.purchaseContinuedHandler}
-        price={this.state.totalPrice}
+        price={this.props.price}
        />
     }
     if( this.state.fetching ) {
@@ -191,7 +192,8 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients
+    ings: state.ingredients,
+    price: state.totalPrice
   }
 }
 
