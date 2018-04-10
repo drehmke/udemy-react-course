@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes'
+import { updatedObject } from '../utility'
 
 const initialState = {
   results: []
@@ -7,12 +8,15 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case actionTypes.STORE:
+      /*
       return {
         ...state,
         // use concat instead of push so that we do not
         // mutably update the results array
         results: state.results.concat({id: new Date(), value: action.value})
       }
+      */
+      return updatedObject(state, { results: state.results.concat({id: new Date(), value: action.value}) } )
     case actionTypes.REMRESULT:
       /* one way to update this ...
       const id = 2;
@@ -23,10 +27,13 @@ const reducer = (state = initialState, action) => {
       const updatedArray = state.results.filter(
         result => result.id !== action.value
       )
+      /*
       return {
         ...state,
         results: updatedArray
       }
+      */
+      return updatedObject(state, { results: updatedArray } )
     default:
       //console.error(`Unable to execute `, action.type )
   }
