@@ -7,8 +7,10 @@ export const storeSync = (val) => {
  }
 }
 export const store = (val) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     setTimeout( () => {
+      // const oldCounter = getState().ctr.counter
+      // console.log(oldCounter)
       dispatch( storeSync(val) )
     }, 2000)
   }
