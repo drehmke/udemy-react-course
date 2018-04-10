@@ -212,7 +212,7 @@ const mapStateToProps = state => {
   return {
     ings: state.burger.ingredients,
     price: state.burger.totalPrice,
-    fetching: state.order.purchasing
+    fetching: state.order.loading
   }
 }
 const mapDispatchToProps = dispatch => {
