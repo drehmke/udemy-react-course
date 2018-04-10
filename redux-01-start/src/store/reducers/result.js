@@ -5,6 +5,13 @@ const initialState = {
   results: []
 }
 
+const deleteResult = ( state, action ) => {
+  const updatedArray = state.results.filter(
+    result => result.id !== action.value
+  )
+  return updatedObject(state, { results: updatedArray } )
+}
+
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case actionTypes.STORE:
@@ -24,16 +31,18 @@ const reducer = (state = initialState, action) => {
       newResults.splice(id, 1)
       */
       /* filter makes a new array, so maintains mutabillity */
+      /*
       const updatedArray = state.results.filter(
         result => result.id !== action.value
       )
+      */
       /*
       return {
         ...state,
         results: updatedArray
       }
       */
-      return updatedObject(state, { results: updatedArray } )
+      return deleteResult(state, action )
     default:
       //console.error(`Unable to execute `, action.type )
   }
