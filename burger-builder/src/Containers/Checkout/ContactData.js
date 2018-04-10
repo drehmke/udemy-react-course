@@ -210,9 +210,9 @@ class ContactData extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
-    fetching: state.purchasing
+    ings: state.burger.ingredients,
+    price: state.burger.totalPrice,
+    fetching: state.order.purchasing
   }
 }
 const mapDispatchToProps = dispatch => {
