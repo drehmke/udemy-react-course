@@ -133,7 +133,7 @@ class ContactData extends Component {
         this.setState({fetching: false})
       })
       */
-      this.props.onOrderBurger(order)
+      this.props.onOrderBurger(order, this.props.token)
   }
 
   validationCheck( value, rules ) {
@@ -212,12 +212,13 @@ const mapStateToProps = state => {
   return {
     ings: state.burger.ingredients,
     price: state.burger.totalPrice,
-    fetching: state.order.loading
+    fetching: state.order.loading,
+    token: state.auth.token
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderBurger: (orderData) => dispatch(actionTypes.purchaseBurger(orderData))
+    onOrderBurger: (orderData, token) => dispatch(actionTypes.purchaseBurger(orderData, token))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, orderAxios))

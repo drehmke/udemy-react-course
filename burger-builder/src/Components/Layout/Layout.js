@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import InvisiWrapper from '../../Hoc/InvisiWrapper'
 import Toolbar from '../Navigation/Toolbar'
 import SideDrawer from '../Navigation/SideDrawer'
@@ -22,10 +24,12 @@ class Layout extends Component {
     return (
       <InvisiWrapper>
         <SideDrawer
+          isAuth={this.props.isAuthenticated}
           open={this.state.showSideDrawer}
           closed={this.sideDrawerCloseHandler}
         />
         <Toolbar
+          isAuth={this.props.isAuthenticated}
           sideDrawerToggle={this.toggleSideDrawer}
         />
         <main className={styles.content}>{this.props.children}</main>
@@ -33,4 +37,10 @@ class Layout extends Component {
     )
   }
 }
-export default Layout
+
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  }
+}
+export default connect(mapStateToProps)(Layout)

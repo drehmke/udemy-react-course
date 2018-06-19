@@ -2,10 +2,17 @@ import React from 'react'
 import Link from './Link'
 import styles from '../Styles/NavItems.css'
 
-const navItems = () => (
+const navItems = (props) => (
   <ul className={styles.navItems}>
     <Link link="/" exact>Burger Builder</Link>
-    <Link link="/orderhistory">Order History</Link>
+    { props.isAuthenticated
+      ? <Link link="/orderhistory">Order History</Link>
+      : null
+    }
+    {props.isAuthenticated
+      ? <Link link="/logout">Logout</Link>
+      : <Link link="/auth">Login / Create Account</Link>
+    }
   </ul>
 )
 
