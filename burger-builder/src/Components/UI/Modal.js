@@ -5,7 +5,6 @@ import InvisiWrapper from '../../Hoc/InvisiWrapper'
 
 class Modal extends Component {
   componentWillUpdate() {
-    console.log('[Modal] WillUpdate')
   }
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.show !== this.props.show ||

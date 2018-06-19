@@ -3,11 +3,7 @@
   width: 100%;
   margin: auto;
 }
-@media ( min-width: 600px ) {
-  .checkoutSummary {
-    width: 500px;
-  }
-}
+
 .checkoutSummary .burgerPreview {
   height: 300px;
   margin: auto;

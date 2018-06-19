@@ -14,7 +14,7 @@ const sideDrawer = (props) => {
   return(
     <InvisiWrapper>
       <Backdrop show={props.open} clicked={props.closed} />
-      <div className={attachedStyles.join(" ")}>
+      <div className={attachedStyles.join(" ")} onClick={props.closed}>
         <div className={styles.logo}>
           <Logo />
         </div>

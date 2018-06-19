@@ -28,7 +28,6 @@ const input = (props) => {
           onChange={props.changed}
           className={inputClasses.join(" ")}
           >
-          console.log(props.elementConfig.options)
           {props.elementConfig.options.map( (option, index) => (
             <option key={index} value={option.value}>{option.display}</option>
           ))}

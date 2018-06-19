@@ -10,7 +10,7 @@ class OrderSummary extends Component {
     I can see HOW the Modal component affects this component.
   */
   componentWillUpdate() {
-    console.log('[OrderSummary] WillUpdate')
+    //console.log('[OrderSummary] WillUpdate')
   }
 
   render () {
