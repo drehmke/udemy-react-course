@@ -19,7 +19,7 @@ const INGREDIENT_PRICES = {
 }
 */
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
   state = {
     //ingredients: null,
     //totalPrice: 4,
@@ -95,7 +95,7 @@ class BurgerBuilder extends Component {
       this.props.onAuthSetRedirectPath('/checkout')
       this.props.history.push('/auth')
     }
-    
+
   }
 
   purchaseCanceledHandler = () => {
