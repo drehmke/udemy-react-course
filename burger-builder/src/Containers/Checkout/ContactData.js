@@ -118,7 +118,8 @@ class ContactData extends Component {
     const order = {
       ingredients: this.props.ings,
       price: this.props.price,
-      orderData: formData
+      orderData: formData,
+      userId: this.props.userId
     }
     /* comment this out to see the spinner, if using firebase */
     /*
@@ -213,7 +214,8 @@ const mapStateToProps = state => {
     ings: state.burger.ingredients,
     price: state.burger.totalPrice,
     fetching: state.order.loading,
-    token: state.auth.token
+    token: state.auth.token,
+    userId: state.auth.userId
   }
 }
 const mapDispatchToProps = dispatch => {
